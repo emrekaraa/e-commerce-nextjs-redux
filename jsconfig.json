@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/pages/*": ["./pages/*"],
+      "@/public/*": ["./public/*"],
+      "@/commons/*": ["./src/commons/*"],
+      "@/components/*": ["./src/components/*"],
+      "@/data/*": ["./src/data/*"],
+      "@/redux/*": ["./src/redux/*"],
+      "@/utils/*": ["./src/utils/*"],
+      "@/views/*": ["./src/views/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}
