@@ -2,7 +2,7 @@ import { menuItems } from "@/data/index.js";
 import {
   AddUserIcon,
   LoginIcon,
-  LogoutIcon,
+  LogOutIcon,
   ShoppingCartIcon,
 } from "@/commons/index.js";
 import { useSelector, useDispatch } from "react-redux";
@@ -45,7 +45,7 @@ const Header = () => {
                 onClick={() => dispatch(isLoggedIn(false))}
                 className="flex items-center py-2 px-5 border mx-1 rounded hover:bg-white hover:border-black hover:text-black"
               >
-                <LogoutIcon className="w-5 mr-2" fill="orange" />
+                <LogOutIcon className="w-5 mr-2" fill="orange" />
                 Log Out
               </button>
             ) : (
