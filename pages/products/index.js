@@ -88,7 +88,7 @@ const Products = () => {
                       <div className="flex items-center justify-center mt-2 flex-wrap gap-3">
                         <Link href={`/products/${item.id}`}>
                           <a className="p-2 bg-gray-200 border border-black hover:bg-gray-300">
-                            Product Detail
+                            Product Details
                           </a>
                         </Link>
 
