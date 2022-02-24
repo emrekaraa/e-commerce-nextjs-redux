@@ -27,7 +27,7 @@ const Register = () => {
         ) {
           dispatch(isLoggedIn(true));
           alert(`Welcome ${accounts[i].username}`);
-          router.push("/");
+          router.push("/products");
           dispatch(loginUserInfo(accounts[i].username, accounts[i].email));
           break;
         }
