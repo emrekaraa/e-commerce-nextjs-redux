@@ -8,6 +8,7 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import { isLoggedIn } from "@/redux/actions/LoginActions";
+import { destroyCookie } from "nookies";
 
 const Header = () => {
   const cardProducts = useSelector((state) => state.CartReducer);
@@ -42,7 +43,10 @@ const Header = () => {
           <div className="flex">
             {isLoggedInState ? (
               <button
-                onClick={() => dispatch(isLoggedIn(false))}
+                onClick={() => {
+                  dispatch(isLoggedIn(false));
+                  destroyCookie(null, "isLoggedIn");
+                }}
                 className="flex items-center py-2 px-5 border mx-1 rounded hover:bg-white hover:border-black hover:text-black"
               >
                 <LogOutIcon className="w-5 mr-2" fill="orange" />

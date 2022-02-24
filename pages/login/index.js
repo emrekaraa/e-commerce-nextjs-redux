@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { isLoggedIn } from "@/redux/actions/LoginActions";
 import { loginUserInfo } from "@/redux/actions/LoginActions";
 import { useRouter } from "next/router";
+import { setCookie } from "nookies";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -20,17 +21,19 @@ const Register = () => {
     if (username && password) {
       const accounts = await axios.get(REGISTER).then((res) => res.data);
 
-      for (let i = 0; i < accounts.length; i++) {
-        if (
-          accounts[i].password === password &&
-          accounts[i].username === username
-        ) {
-          dispatch(isLoggedIn(true));
-          alert(`Welcome ${accounts[i].username}`);
-          router.push("/products");
-          dispatch(loginUserInfo(accounts[i].username, accounts[i].email));
-          break;
-        }
+      {
+        accounts.map((account) => {
+          if (account.password === password && account.username === username) {
+            dispatch(isLoggedIn(true));
+            alert(`Welcome ${account.username}`);
+            router.push("/products");
+            dispatch(loginUserInfo(account.username, account.email));
+            setCookie(null, "authToken", "AWuU123DQsdaYowyW28123", {
+              maxAgae: 30 * 24 * 60 * 60,
+              path: "/",
+            });
+          }
+        });
       }
     } else {
       alert("Please enter username & password");
