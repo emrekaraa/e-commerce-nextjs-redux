@@ -1,7 +1,16 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## Live preview link (https://e-commerce-nextjs-redux.vercel.app)
 
-## Getting Started
+### Created with: 
+* Tailwind.css, 
+* Next.js, 
+* Redux, 
+* Redux-Thunk,
+* Next-Redux-Wrapper (for save to redux state at ssr time)
 
+
+
+
+### Getting Started
 First, run the development server:
 
 ```bash
