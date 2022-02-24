@@ -2,11 +2,13 @@ import Header from "@/components/composite/Header";
 import React from "react";
 import axios from "axios";
 import { useState } from "react";
+import { useRouter } from "next/router";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const router = useRouter();
 
   const onSubmit = (e) => {
     if (username && password && email) {
@@ -20,6 +22,7 @@ const Register = () => {
       setEmail("");
       setPassword("");
       alert("Register Success");
+      router.push("/login");
     } else {
       alert("Please fill all the fields");
     }

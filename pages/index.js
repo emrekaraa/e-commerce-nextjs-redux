@@ -1,11 +1,13 @@
 import Header from "@/components/composite/Header";
-import ProductList from "@/views/productList";
 
 const Home = () => {
   return (
     <>
       <Header />
-      <ProductList />
+
+      <h1 className="text-center text-3xl text-red-500 mt-5">
+        Welcome to Home Page
+      </h1>
     </>
   );
 };

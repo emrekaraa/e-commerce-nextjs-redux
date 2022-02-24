@@ -16,4 +16,4 @@ export const reducer = (state, action) => {
 const makeStore = () =>
   createStore(reducer, composeWithDevTools(applyMiddleware(thunk)));
 
-export const wrapper = createWrapper(makeStore, { debug: true });
+export const wrapper = createWrapper(makeStore);
