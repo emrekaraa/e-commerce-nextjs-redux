@@ -4,7 +4,7 @@ import {
   LoginIcon,
   LogOutIcon,
   ShoppingCartIcon,
-} from "@/commons/index.js";
+} from "@/commons/index";
 import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import { isLoggedIn } from "@/redux/actions/LoginActions";
