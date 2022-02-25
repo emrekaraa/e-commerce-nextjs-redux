@@ -1,4 +1,6 @@
 import { LOGIN_USER } from "@/redux/types";
+import { parseCookies } from "nookies";
+const cookies = parseCookies();
 
 const initialState = { isLoggedIn: false };
 

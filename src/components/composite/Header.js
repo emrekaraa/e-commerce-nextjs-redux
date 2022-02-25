@@ -1,24 +1,26 @@
 import { menuItems } from "@/data/index.js";
-import {
-  AddUserIcon,
-  LoginIcon,
-  LogOutIcon,
-  ShoppingCartIcon,
-} from "@/commons/index";
+import { AddUserIcon, LoginIcon, ShoppingCartIcon } from "@/commons/index";
 import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import { isLoggedIn } from "@/redux/actions/LoginActions";
 import { destroyCookie, parseCookies } from "nookies";
 import { useRouter } from "next/router";
-
-const cookies = parseCookies();
-console.log({ cookies });
+import { useEffect } from "react";
 
 const Header = () => {
   const cardProducts = useSelector((state) => state.CartReducer);
   const isLoggedInState = useSelector((state) => state.LoginReducer.isLoggedIn);
+
+  const cookies = parseCookies();
+
   const router = useRouter();
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (cookies.authToken) {
+      dispatch(isLoggedIn(true));
+    }
+  }, []);
 
   return (
     <header className="bg-slate-800 text-white ">
@@ -26,7 +28,7 @@ const Header = () => {
         {/* Logo */}
         <Link href="/">
           <h1 className="font-semibold text-2xl text-orange-400 cursor-pointer">
-            LA COLLECTION
+            E-Commerce Store
           </h1>
         </Link>
         {/* Menu */}
@@ -43,7 +45,7 @@ const Header = () => {
         {/* Buttons */}
         <div className="flex flex-col items-center">
           <div className="flex">
-            {isLoggedInState || cookies.authToken ? (
+            {isLoggedInState ? (
               <button
                 onClick={() => {
                   dispatch(isLoggedIn(false));
@@ -52,7 +54,7 @@ const Header = () => {
                 }}
                 className="flex items-center py-2 px-5 border mx-1 rounded hover:bg-white hover:border-black hover:text-black"
               >
-                <LogOutIcon className="w-5 mr-2" fill="orange" />
+                <LoginIcon className="w-5 mr-2" fill="orange" />
                 Log Out
               </button>
             ) : (
@@ -64,7 +66,7 @@ const Header = () => {
               </Link>
             )}
 
-            {!isLoggedInState && !cookies.authToken && (
+            {!isLoggedInState && (
               <Link href="/register">
                 <button className="flex items-center  py-2 px-5 border mx-1 rounded hover:bg-white hover:border-black hover:text-black">
                   <AddUserIcon className="w-5 mr-2" fill="orange" />
@@ -73,7 +75,7 @@ const Header = () => {
               </Link>
             )}
 
-            {isLoggedInState || cookies.authToken ? (
+            {isLoggedInState && (
               <Link href="/cart">
                 <button className="flex items-center py-2 px-5 border mx-1 rounded hover:bg-white hover:border-black hover:text-black">
                   <ShoppingCartIcon className="w-5 mr-2" fill="orange" />
@@ -87,7 +89,7 @@ const Header = () => {
                   )}
                 </button>
               </Link>
-            ) : null}
+            )}
           </div>
         </div>
       </div>

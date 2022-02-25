@@ -3,6 +3,7 @@ import React from "react";
 import axios from "axios";
 import { useState } from "react";
 import { useRouter } from "next/router";
+import { REGISTER } from "@/redux/api/register/register";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -13,7 +14,7 @@ const Register = () => {
   const onSubmit = (e) => {
     if (username && password && email) {
       e.preventDefault();
-      axios.post(`https://620fb871ec8b2ee2834aaadf.mockapi.io/api/register`, {
+      axios.post(REGISTER, {
         username: username,
         email: email,
         password: password,

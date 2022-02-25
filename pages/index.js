@@ -5,9 +5,7 @@ const Home = () => {
     <>
       <Header />
 
-      <h1 className="text-center text-3xl text-red-500 mt-5">
-        Welcome to Home Page
-      </h1>
+      <h1 className="text-center text-3xl text-red-500 mt-5">Home Page</h1>
     </>
   );
 };
