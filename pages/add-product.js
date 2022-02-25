@@ -9,7 +9,7 @@ const AddProduct = () => {
   const [category, setCategory] = useState("");
   const [productName, setProductName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [price, setPrice] = useState(1);
+  const [price, setPrice] = useState();
 
   const isLoggedIn = useSelector((state) => state.LoginReducer.isLoggedIn);
   const cookies = parseCookies();
@@ -27,7 +27,7 @@ const AddProduct = () => {
       setCategory("");
       setProductName("");
       setImageUrl("");
-      setPrice(1);
+      setPrice();
       alert("Product added successfully");
     } else {
       alert("Please fill all the fields");
