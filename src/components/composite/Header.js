@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import { isLoggedIn } from "@/redux/actions/LoginActions";
 import { destroyCookie, parseCookies } from "nookies";
+import { useRouter } from "next/router";
 
 const cookies = parseCookies();
 console.log({ cookies });
@@ -16,9 +17,7 @@ console.log({ cookies });
 const Header = () => {
   const cardProducts = useSelector((state) => state.CartReducer);
   const isLoggedInState = useSelector((state) => state.LoginReducer.isLoggedIn);
-  const { userName, userEmail } = useSelector(
-    (state) => state.LoginUserInfoReducer
-  );
+  const router = useRouter();
   const dispatch = useDispatch();
 
   return (
@@ -48,7 +47,8 @@ const Header = () => {
               <button
                 onClick={() => {
                   dispatch(isLoggedIn(false));
-                  destroyCookie(null, "isLoggedIn");
+                  destroyCookie(null, "authToken");
+                  router.reload();
                 }}
                 className="flex items-center py-2 px-5 border mx-1 rounded hover:bg-white hover:border-black hover:text-black"
               >

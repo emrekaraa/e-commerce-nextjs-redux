@@ -29,7 +29,6 @@ const Register = () => {
             dispatch(isLoggedIn(true));
             alert(`Welcome ${account.username}`);
             router.push("/products");
-            dispatch(loginUserInfo(account.username, account.email));
             setCookie(null, "authToken", "AWuU123DQsdaYowyW28123", {
               maxAgae: 30 * 24 * 60 * 60,
               path: "/",
