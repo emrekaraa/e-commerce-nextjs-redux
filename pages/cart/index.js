@@ -1,17 +1,19 @@
 import Header from "@/components/composite/Header";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { parseCookies } from "nookies";
 
 const Cart = () => {
   const cardProducts = useSelector((state) => state.CartReducer.cart);
   const isLoggedIn = useSelector((state) => state.LoginReducer.isLoggedIn);
+  const cookies = parseCookies();
 
   const dispatch = useDispatch();
 
   return (
     <>
       <Header />
-      {isLoggedIn ? (
+      {isLoggedIn || cookies.authToken ? (
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 py-10">
           {cardProducts.map((item, index) => (
             <div
@@ -22,6 +24,7 @@ const Cart = () => {
               <h1 className="text-lg font-semibold">{item.name}</h1>
               <p>Category: {item.category}</p>
               <p>{item.price} $</p>
+              <p className="font-semibold">Total Quantity {item.quantity} </p>
               <button
                 onClick={(e) => {
                   e.preventDefault();

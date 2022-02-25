@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { ROOT_URL } from "@/redux/api/constants";
 import { useSelector } from "react-redux";
+import { parseCookies } from "nookies";
 
 const addProduct = () => {
   const [category, setCategory] = useState("");
@@ -11,6 +12,7 @@ const addProduct = () => {
   const [price, setPrice] = useState(1);
 
   const isLoggedIn = useSelector((state) => state.LoginReducer.isLoggedIn);
+  const cookies = parseCookies();
 
   const onSubmit = () => {
     if (category && productName && price) {
@@ -34,7 +36,7 @@ const addProduct = () => {
   return (
     <>
       <Header />
-      {isLoggedIn ? (
+      {isLoggedIn || cookies.authToken ? (
         <div className="container mx-auto max-w-sm px-2 mt-10">
           <div className="px-6 py-8 rounded shadow-2xl text-black w-full">
             <h1 className="mb-8 text-3xl text-center">Add Product</h1>

@@ -8,7 +8,10 @@ import {
 import { useSelector, useDispatch } from "react-redux";
 import Link from "next/link";
 import { isLoggedIn } from "@/redux/actions/LoginActions";
-import { destroyCookie } from "nookies";
+import { destroyCookie, parseCookies } from "nookies";
+
+const cookies = parseCookies();
+console.log({ cookies });
 
 const Header = () => {
   const cardProducts = useSelector((state) => state.CartReducer);
@@ -41,7 +44,7 @@ const Header = () => {
         {/* Buttons */}
         <div className="flex flex-col items-center">
           <div className="flex">
-            {isLoggedInState ? (
+            {isLoggedInState || cookies.authToken ? (
               <button
                 onClick={() => {
                   dispatch(isLoggedIn(false));
@@ -61,7 +64,7 @@ const Header = () => {
               </Link>
             )}
 
-            {!isLoggedInState && (
+            {!isLoggedInState && !cookies.authToken && (
               <Link href="/register">
                 <button className="flex items-center  py-2 px-5 border mx-1 rounded hover:bg-white hover:border-black hover:text-black">
                   <AddUserIcon className="w-5 mr-2" fill="orange" />
@@ -70,7 +73,7 @@ const Header = () => {
               </Link>
             )}
 
-            {isLoggedInState && (
+            {isLoggedInState || cookies.authToken ? (
               <Link href="/cart">
                 <button className="flex items-center py-2 px-5 border mx-1 rounded hover:bg-white hover:border-black hover:text-black">
                   <ShoppingCartIcon className="w-5 mr-2" fill="orange" />
@@ -84,13 +87,8 @@ const Header = () => {
                   )}
                 </button>
               </Link>
-            )}
+            ) : null}
           </div>
-          {isLoggedInState && (
-            <h1>
-              Email: {userEmail} || Username: {userName}
-            </h1>
-          )}
         </div>
       </div>
     </header>

@@ -7,11 +7,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { isLoggedIn } from "@/redux/actions/LoginActions";
 import { loginUserInfo } from "@/redux/actions/LoginActions";
 import { useRouter } from "next/router";
-import { setCookie } from "nookies";
+import { setCookie, parseCookies } from "nookies";
 
 const Register = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const cookies = parseCookies();
 
   const router = useRouter();
   const dispatch = useDispatch();
@@ -43,7 +45,7 @@ const Register = () => {
   return (
     <>
       <Header />
-      {isLoggedInState ? (
+      {isLoggedInState || cookies.authToken ? (
         <h1 className="text-3xl text-red-500 mt-10 text-center">
           Already logged in
         </h1>

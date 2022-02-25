@@ -8,10 +8,13 @@ import { GET_PRODUCTS } from "@/redux/api/getProducts/getProducts";
 import { addToCart } from "@/redux/actions/CartActions";
 import { FETCH_PRODUCTS } from "@/redux/types";
 import { filterProducts } from "@/redux/actions/FilterActions";
+import { parseCookies } from "nookies";
 
 const Products = () => {
   const data = useSelector((state) => state.fetchProductsReducer);
   const isLoggedIn = useSelector((state) => state.LoginReducer.isLoggedIn);
+  const cookies = parseCookies();
+
   const dispatch = useDispatch();
 
   const filteredProducts = useSelector((state) => state.FilterProducts);
@@ -23,9 +26,8 @@ const Products = () => {
   return (
     <>
       <Header />
-      {isLoggedIn ? (
+      {isLoggedIn || cookies.authToken ? (
         <>
-          {" "}
           <div className="container mx-auto flex flex-wrap justify-center gap-4 mt-10">
             <button
               onClick={() => dispatch(filterProducts(data))}
