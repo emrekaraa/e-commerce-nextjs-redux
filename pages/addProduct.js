@@ -5,7 +5,7 @@ import { ROOT_URL } from "@/redux/api/constants";
 import { useSelector } from "react-redux";
 import { parseCookies } from "nookies";
 
-const addProduct = () => {
+const AddProduct = () => {
   const [category, setCategory] = useState("");
   const [productName, setProductName] = useState("");
   const [imageUrl, setImageUrl] = useState("");
@@ -95,4 +95,4 @@ const addProduct = () => {
   );
 };
 
-export default addProduct;
+export default AddProduct;

@@ -24,7 +24,16 @@ const Cart = () => {
               <h1 className="text-lg font-semibold">{item.name}</h1>
               <p>Category: {item.category}</p>
               <p>{item.price} $</p>
-              <p className="font-semibold">Total Quantity {item.quantity} </p>
+              <div className="flex items-center gap-2 my-5">
+                <button className="py-0.5 px-2.5 rounded bg-gray-300 hover:bg-gray-400 ">
+                  -
+                </button>
+                <p className="font-semibold">Total Quantity {item.quantity} </p>
+                <button className="py-0.5 px-2.5 rounded bg-gray-300 hover:bg-gray-400 ">
+                  +
+                </button>
+              </div>
+
               <button
                 onClick={(e) => {
                   e.preventDefault();
